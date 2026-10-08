@@ -1,0 +1,2557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | Corazon Pathology Laboratory</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        violet: {
+                            50: "#F8F6FA",
+                            100: "#F0EBF5",
+                            200: "#DED2E8",
+                            300: "#C5B2D4",
+                            400: "#A98BC7",
+                            500: "#7045A0",
+                            600: "#5B3487",
+                            700: "#4B2673",
+                            800: "#351A52",
+                            900: "#24113F",
+                            950: "#16072B"
+                        }
+                    },
+                    fontFamily: {
+                        sans: ["DM Sans", "sans-serif"],
+                        outfit: ["Outfit", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #fff;
+            color: #24113F;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background: #7045A0;
+            color: #fff;
+        }
+
+        .mobile-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(36, 17, 63, 0.98);
+            backdrop-filter: blur(14px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(-10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 14px 24px;
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
+            color: #C5B2D4;
+            background: rgba(112, 69, 160, 0.2);
+            padding-left: 30px;
+        }
+
+        .mobile-menu-btn {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-hero-image {
+            transform: scale(1.04);
+            animation:
+                heroImageReveal 1.5s cubic-bezier(.2, .7, .2, 1) both,
+                heroKenBurns 16s ease-in-out 1.5s infinite alternate;
+            filter: saturate(.9) contrast(1.03);
+        }
+
+        section:first-of-type {
+            isolation: isolate;
+        }
+
+        section:first-of-type::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(180deg,
+                    rgba(22, 7, 43, .12),
+                    transparent 45%,
+                    rgba(22, 7, 43, .22));
+            z-index: 1;
+        }
+
+        .hero-glow {
+            background:
+                radial-gradient(circle at 18% 32%, rgba(197, 178, 212, .22), transparent 26%),
+                radial-gradient(circle at 82% 70%, rgba(112, 69, 160, .25), transparent 28%);
+            animation: glowFloat 9s ease-in-out infinite alternate;
+            z-index: 2;
+        }
+
+        .hero-circle {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, .14);
+            box-shadow: inset 0 0 50px rgba(255, 255, 255, .03);
+            backdrop-filter: blur(3px);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hero-circle-one {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            top: 18%;
+            left: 8%;
+            animation: floatOne 8s ease-in-out infinite;
+        }
+
+        .hero-circle-two {
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            right: 7%;
+            bottom: 5%;
+            animation: floatTwo 10s ease-in-out infinite;
+        }
+
+        .hero-label {
+            animation: fadeDown .8s .15s both;
+            letter-spacing: .22em;
+        }
+
+        .hero-title {
+            text-shadow: 0 12px 45px rgba(22, 7, 43, .22);
+            animation: titleReveal 1s .25s cubic-bezier(.2, .8, .2, 1) both;
+        }
+
+        .hero-description {
+            animation: fadeUp .9s .45s both;
+        }
+
+        .hero-breadcrumb {
+            animation: fadeUp .9s .6s both;
+        }
+
+        .hero-line {
+            display: inline-block;
+            width: 34px;
+            height: 1px;
+            background: rgba(255, 255, 255, .6);
+            vertical-align: middle;
+            margin: 0 10px;
+        }
+
+        .breadcrumb-arrow {
+            margin: 0 10px;
+            color: #C5B2D4;
+        }
+
+        .breadcrumb-arrow,
+        .hero-breadcrumb .current {
+            color: #DED2E8;
+        }
+
+        .about-fade-up,
+        .about-fade-left,
+        .about-fade-right,
+        .about-zoom {
+            opacity: 0;
+            will-change: transform, opacity;
+        }
+
+        .about-fade-up {
+            transform: translateY(38px);
+        }
+
+        .about-fade-left {
+            transform: translateX(-42px);
+        }
+
+        .about-fade-right {
+            transform: translateX(42px);
+        }
+
+        .about-zoom {
+            transform: scale(.88);
+        }
+
+        .about-fade-up.show,
+        .about-fade-left.show,
+        .about-fade-right.show,
+        .about-zoom.show {
+            opacity: 1;
+            transform: none;
+            transition:
+                opacity .85s cubic-bezier(.2, .7, .2, 1),
+                transform .85s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .delay-75 {
+            transition-delay: .075s !important;
+        }
+
+        .delay-100 {
+            transition-delay: .1s !important;
+        }
+
+        .delay-150 {
+            transition-delay: .15s !important;
+        }
+
+        .delay-200 {
+            transition-delay: .2s !important;
+        }
+
+        .delay-300 {
+            transition-delay: .3s !important;
+        }
+
+        .delay-400 {
+            transition-delay: .4s !important;
+        }
+
+        .delay-500 {
+            transition-delay: .5s !important;
+        }
+
+        .about-image {
+            border-radius: 24px;
+            box-shadow: 0 22px 60px rgba(36, 17, 63, .12);
+            transition:
+                transform .65s cubic-bezier(.2, .7, .2, 1),
+                box-shadow .65s ease,
+                filter .65s ease;
+            filter: saturate(.94);
+        }
+
+        .about-image:hover {
+            transform: translateY(-7px) scale(1.015);
+            box-shadow: 0 30px 75px rgba(36, 17, 63, .19);
+            filter: saturate(1.04);
+        }
+
+        .about-image.about-fade-left:hover {
+            transform: translateX(5px) translateY(-7px) scale(1.015);
+        }
+
+        .about-image.about-fade-right:hover {
+            transform: translateX(-5px) translateY(-7px) scale(1.015);
+        }
+
+        .about-zoom {
+            border-radius: 22px;
+            box-shadow: 0 20px 55px rgba(75, 38, 115, .32);
+            animation: ratingPulse 4s ease-in-out 2s infinite;
+        }
+
+        .about-zoom h3 {
+            letter-spacing: -.03em;
+        }
+
+        h2 {
+            letter-spacing: -.035em;
+        }
+
+        h3 {
+            letter-spacing: -.02em;
+        }
+
+        section .grid>.bg-white {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(112, 69, 160, .08);
+            border-radius: 28px;
+            box-shadow: 0 12px 35px rgba(36, 17, 63, .055);
+        }
+
+        section .grid>.bg-white::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg,
+                    rgba(112, 69, 160, .08),
+                    transparent 45%);
+            opacity: 0;
+            transition: opacity .45s ease;
+            pointer-events: none;
+        }
+
+        section .grid>.bg-white:hover::before {
+            opacity: 1;
+        }
+
+        section .grid>.bg-white img {
+            transition:
+                transform .75s cubic-bezier(.2, .7, .2, 1),
+                filter .5s ease;
+        }
+
+        section .grid>.bg-white:hover img {
+            transform: scale(1.045);
+            filter: saturate(1.08);
+        }
+
+        section .grid>.bg-white a {
+            transition: color .3s ease, transform .3s ease;
+        }
+
+        section .grid>.bg-white:hover a {
+            transform: translateX(4px);
+        }
+
+        .consultant-card {
+            min-width: 0;
+        }
+
+        .consultant-photo {
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .consultant-card img {
+            transition:
+                transform .65s cubic-bezier(.2, .7, .2, 1),
+                filter .5s ease;
+        }
+
+        .consultant-card:hover img {
+            transform: scale(1.04);
+        }
+
+        .consultant-card:hover {
+            box-shadow: 0 25px 60px rgba(0, 0, 0, .25);
+        }
+
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        footer a {
+            transition: color .25s ease, transform .25s ease, opacity .25s ease;
+        }
+
+        footer a:hover {
+            opacity: .95;
+        }
+
+        #scrollProgress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #C5B2D4, #7045A0, #A98BC7);
+            z-index: 9999;
+            box-shadow: 0 0 14px rgba(197, 178, 212, .55);
+        }
+
+        #backToTop {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 50%;
+            background: rgba(36, 17, 63, .88);
+            color: #fff;
+            display: grid;
+            place-items: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(14px);
+            transition: .35s ease;
+            box-shadow: 0 12px 35px rgba(22, 7, 43, .22);
+            backdrop-filter: blur(12px);
+        }
+
+        #backToTop.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #backToTop:hover {
+            background: #7045A0;
+            transform: translateY(-3px);
+        }
+
+        @keyframes heroImageReveal {
+            from {
+                opacity: 0;
+                transform: scale(1.12);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.04);
+            }
+        }
+
+        @keyframes heroKenBurns {
+            from {
+                transform: scale(1.04) translate3d(0, 0, 0);
+            }
+
+            to {
+                transform: scale(1.10) translate3d(-1%, -1%, 0);
+            }
+        }
+
+        @keyframes glowFloat {
+            from {
+                transform: scale(1) translate3d(0, 0, 0);
+            }
+
+            to {
+                transform: scale(1.08) translate3d(1%, -1%, 0);
+            }
+        }
+
+        @keyframes floatOne {
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate3d(18px, -18px, 0) rotate(3deg);
+            }
+        }
+
+        @keyframes floatTwo {
+
+            0%,
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            50% {
+                transform: translate3d(-16px, 14px, 0);
+            }
+        }
+
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes titleReveal {
+            from {
+                opacity: 0;
+                transform: translateY(28px) scale(.98);
+                filter: blur(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+                filter: blur(0);
+            }
+        }
+
+        @keyframes ratingPulse {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .about-mobile-header {
+                height: 120px;
+            }
+
+            .hero-title {
+                font-size: 72px;
+            }
+
+            .hero-description {
+                font-size: 20px;
+                line-height: 1.8;
+            }
+
+            .consultant-showcase {
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+
+            .consultant-photo {
+                height: 420px;
+            }
+        }
+
+        @media (min-width: 1024px) and (max-width: 1279px) {
+            .about-mobile-header {
+                height: 105px !important;
+            }
+
+            .hero-title {
+                font-size: 64px;
+            }
+
+            .hero-description {
+                font-size: 18px;
+            }
+
+            .about-image {
+                border-radius: 20px;
+            }
+
+            .consultant-showcase>div {
+                grid-template-columns: 1fr 1.7fr;
+                gap: 40px;
+            }
+
+            .consultant-grid {
+                gap: 20px;
+            }
+
+            .consultant-card {
+                padding: 18px;
+            }
+
+            .consultant-photo {
+                height: 330px !important;
+            }
+
+            .consultant-name {
+                font-size: 24px !important;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            .about-mobile-header {
+                height: 90px !important;
+            }
+
+            .index-logo-image {
+                max-width: 190px;
+                height: auto;
+            }
+
+            .mobile-menu {
+                top: 90px;
+            }
+
+            section:first-of-type {
+                min-height: 720px;
+            }
+
+            .hero-title {
+                font-size: clamp(52px, 9vw, 72px);
+                line-height: 1;
+            }
+
+            .hero-description {
+                max-width: 680px;
+                font-size: 17px;
+                line-height: 1.7;
+            }
+
+            .hero-label {
+                font-size: 11px;
+            }
+
+            .about-image {
+                border-radius: 20px;
+            }
+
+            .lg\:col-span-7 {
+                min-height: 500px;
+            }
+
+            .lg\:col-span-7>.relative {
+                height: 500px;
+            }
+
+            .consultant-showcase {
+                padding-top: 60px !important;
+                padding-bottom: 60px !important;
+            }
+
+            .consultant-showcase>div {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .consultant-quote-section {
+                max-width: 700px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .consultant-quote-section blockquote {
+                text-align: left;
+                max-width: 620px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .consultant-grid {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 20px;
+            }
+
+            .consultant-card {
+                width: 100%;
+                min-width: 0;
+                padding: 16px !important;
+                transform: none;
+            }
+
+            .consultant-card:hover {
+                transform: translateY(-5px) !important;
+            }
+
+            .consultant-photo {
+                width: 100%;
+                height: 330px !important;
+                margin-bottom: 16px;
+            }
+
+            .consultant-name {
+                font-size: 22px !important;
+                line-height: 1.2;
+            }
+
+            .consultant-badge {
+                font-size: 9px !important;
+                padding: 6px 9px !important;
+                text-align: center;
+            }
+
+            .consultant-card p {
+                line-height: 1.55;
+            }
+
+            .grid.md\:grid-cols-3 {
+                gap: 18px;
+            }
+
+            .grid.md\:grid-cols-3 img {
+                height: 250px;
+            }
+
+            section .min-h-\[610px\] {
+                min-height: 520px;
+            }
+
+            section .min-h-\[610px\] img {
+                max-width: 100%;
+            }
+
+            section .grid.grid-cols-2 {
+                gap: 14px;
+            }
+
+            section .grid.grid-cols-2 img {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            html,
+            body {
+                width: 100%;
+                max-width: 100%;
+                overflow-x: hidden;
+            }
+
+            body {
+                font-size: 15px;
+            }
+
+            .about-mobile-header {
+                height: 78px !important;
+            }
+
+            .index-logo-image {
+                width: 170px;
+                max-width: 75vw;
+                height: auto;
+            }
+
+            .mobile-menu {
+                top: 78px;
+            }
+
+            .mobile-menu-btn {
+                width: 42px;
+                height: 42px;
+                border-radius: 10px;
+            }
+
+            section:first-of-type {
+                min-height: 620px !important;
+                height: auto;
+            }
+
+            .hero-title {
+                font-size: clamp(42px, 13vw, 58px) !important;
+                line-height: .98 !important;
+                margin-top: 20px;
+            }
+
+            .hero-description {
+                font-size: 15px !important;
+                line-height: 1.7 !important;
+                padding: 0 8px;
+            }
+
+            .hero-label {
+                font-size: 9px;
+                letter-spacing: .16em;
+            }
+
+            .hero-breadcrumb {
+                font-size: 13px;
+            }
+
+            .hero-circle-one {
+                width: 180px;
+                height: 180px;
+                left: -80px;
+            }
+
+            .hero-circle-two {
+                width: 220px;
+                height: 220px;
+                right: -100px;
+            }
+
+            section.py-24,
+            section.py-24.lg\:py-32,
+            section.py-24.lg\:py-28 {
+                padding-top: 65px !important;
+                padding-bottom: 65px !important;
+            }
+
+            h2 {
+                font-size: 36px !important;
+                line-height: 1.08 !important;
+            }
+
+            .lg\:col-span-7 {
+                min-height: auto !important;
+            }
+
+            .lg\:col-span-7>.relative {
+                height: auto !important;
+                min-height: 0 !important;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .lg\:col-span-7>.relative>img {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                width: 100% !important;
+                height: 190px !important;
+                transform: none;
+            }
+
+            .lg\:col-span-7>.relative>img:nth-child(2) {
+                height: 280px !important;
+            }
+
+            .lg\:col-span-7>.relative>img:nth-child(3) {
+                height: 190px !important;
+            }
+
+            .lg\:col-span-7>.relative>.about-zoom {
+                position: absolute !important;
+                right: 10px !important;
+                bottom: 10px !important;
+                width: auto !important;
+                padding: 16px 20px !important;
+            }
+
+            .about-zoom h3 {
+                font-size: 32px;
+            }
+
+            .about-fade-right,
+            .about-fade-left {
+                width: 100%;
+            }
+
+            .about-fade-right p,
+            .about-fade-left p {
+                font-size: 15px !important;
+                line-height: 1.75 !important;
+            }
+
+            .about-fade-right ul {
+                font-size: 15px;
+            }
+
+            section .grid.md\:grid-cols-3 {
+                display: grid;
+                grid-template-columns: 1fr !important;
+                gap: 18px;
+            }
+
+            section .grid.md\:grid-cols-3>div:last-child {
+                grid-column: auto;
+            }
+
+            section .grid.md\:grid-cols-3>div {
+                min-height: auto;
+                padding: 22px;
+                border-radius: 20px;
+            }
+
+            section .grid.md\:grid-cols-3 img {
+                height: 190px;
+            }
+
+            section .grid.md\:grid-cols-3 h3 {
+                font-size: 23px;
+                margin-top: 20px;
+            }
+
+            .consultant-showcase {
+                padding-top: 55px !important;
+                padding-bottom: 55px !important;
+            }
+
+            .consultant-showcase>div {
+                display: flex;
+                flex-direction: column;
+                gap: 35px;
+            }
+
+            .consultant-quote-section {
+                width: 100%;
+                text-align: center;
+            }
+
+            .consultant-quote-section h2 {
+                font-size: 30px !important;
+                line-height: 1.15 !important;
+            }
+
+            .consultant-quote-section blockquote {
+                margin-top: 24px;
+                padding-left: 18px;
+                text-align: left;
+            }
+
+            .consultant-quote-section blockquote p {
+                font-size: 16px;
+                line-height: 1.65;
+            }
+
+            .consultant-grid {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                gap: 20px;
+                width: 100%;
+            }
+
+            .consultant-card {
+                width: 100%;
+                padding: 14px !important;
+                border-radius: 22px !important;
+            }
+
+            .consultant-photo {
+                width: 100%;
+                height: 300px !important;
+                border-radius: 16px;
+                margin-bottom: 16px;
+            }
+
+            .consultant-name {
+                font-size: 23px !important;
+            }
+
+            .consultant-badge {
+                max-width: 100%;
+                font-size: 9px !important;
+                line-height: 1.4;
+                text-align: center;
+            }
+
+            .consultant-card p {
+                font-size: 13px !important;
+                line-height: 1.55 !important;
+            }
+
+            .consultant-card:hover {
+                transform: translateY(-4px) !important;
+            }
+
+            .grid.md\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+            }
+
+            .grid.md\:grid-cols-3 img {
+                width: 100%;
+                height: 230px !important;
+            }
+
+            .min-h-\[610px\] {
+                min-height: auto !important;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .min-h-\[610px\] img {
+                position: relative !important;
+                top: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                left: auto !important;
+                width: 100% !important;
+                height: 220px !important;
+                transform: none;
+            }
+
+            .min-h-\[610px\] img:nth-child(3) {
+                grid-column: span 2;
+                height: 190px !important;
+            }
+
+            section .grid.grid-cols-2 {
+                grid-template-columns: 1fr !important;
+                gap: 14px;
+            }
+
+            section .grid.grid-cols-2 img {
+                height: 230px !important;
+            }
+
+            section .grid.grid-cols-2 img.col-span-2 {
+                grid-column: auto !important;
+            }
+
+            a.bg-violet-600,
+            a.bg-white {
+                max-width: 100%;
+            }
+
+            footer .grid {
+                gap: 35px;
+            }
+
+            footer .py-16 {
+                padding-top: 50px;
+                padding-bottom: 40px;
+            }
+
+            footer h2 {
+                font-size: 22px !important;
+            }
+
+            footer h3 {
+                font-size: 18px;
+            }
+
+            footer p,
+            footer li,
+            footer a {
+                font-size: 14px;
+            }
+
+            footer .flex.md\:flex-row {
+                align-items: flex-start;
+            }
+
+            #backToTop {
+                right: 14px;
+                bottom: 14px;
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-mobile-header {
+                height: 72px !important;
+            }
+
+            .mobile-menu {
+                top: 72px;
+            }
+
+            .index-logo-image {
+                width: 150px;
+            }
+
+            .mobile-menu-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            section:first-of-type {
+                min-height: 570px !important;
+            }
+
+            .hero-title {
+                font-size: 42px !important;
+            }
+
+            .hero-description {
+                font-size: 14px !important;
+                padding: 0 4px;
+            }
+
+            .hero-label {
+                font-size: 8px;
+            }
+
+            section.py-24,
+            section.py-24.lg\:py-32,
+            section.py-24.lg\:py-28 {
+                padding-top: 52px !important;
+                padding-bottom: 52px !important;
+            }
+
+            h2 {
+                font-size: 31px !important;
+            }
+
+            .lg\:col-span-7>.relative {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+
+            .lg\:col-span-7>.relative>img {
+                height: 150px !important;
+            }
+
+            .lg\:col-span-7>.relative>img:nth-child(2) {
+                height: 225px !important;
+            }
+
+            .lg\:col-span-7>.relative>img:nth-child(3) {
+                height: 150px !important;
+            }
+
+            .lg\:col-span-7>.relative>.about-zoom {
+                padding: 10px 14px !important;
+            }
+
+            .about-zoom h3 {
+                font-size: 25px;
+            }
+
+            .about-zoom p {
+                font-size: 8px;
+            }
+
+            .consultant-photo {
+                height: 270px !important;
+            }
+
+            .consultant-name {
+                font-size: 21px !important;
+            }
+
+            .consultant-card p {
+                font-size: 12px !important;
+            }
+
+            .grid.md\:grid-cols-3 img {
+                height: 200px !important;
+            }
+
+            .min-h-\[610px\] img {
+                height: 180px !important;
+            }
+
+            .min-h-\[610px\] img:nth-child(3) {
+                height: 160px !important;
+            }
+
+            section .grid.grid-cols-2 img {
+                height: 190px !important;
+            }
+
+            footer .py-16 {
+                padding-top: 42px;
+                padding-bottom: 32px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .index-logo-image {
+                width: 135px;
+            }
+
+            .hero-title {
+                font-size: 36px !important;
+            }
+
+            .hero-description {
+                font-size: 13px !important;
+            }
+
+            h2 {
+                font-size: 28px !important;
+            }
+
+            .consultant-photo {
+                height: 240px !important;
+            }
+
+            .consultant-name {
+                font-size: 19px !important;
+            }
+
+            .consultant-badge {
+                font-size: 8px !important;
+            }
+
+            .consultant-card p {
+                font-size: 11px !important;
+            }
+
+            .lg\:col-span-7>.relative>img {
+                height: 125px !important;
+            }
+
+            .lg\:col-span-7>.relative>img:nth-child(2) {
+                height: 190px !important;
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .about-image:hover {
+                transform: none !important;
+                box-shadow: 0 22px 60px rgba(36, 17, 63, .12);
+            }
+
+            .consultant-card:hover {
+                transform: none !important;
+            }
+
+            a:hover {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 767px) and (orientation: landscape) {
+            section:first-of-type {
+                min-height: 650px !important;
+            }
+
+            .consultant-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .consultant-photo {
+                height: 250px !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .index-logo-image {
+            display: block;
+            width: 280px;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: none;
+        }
+
+        @media (max-width: 1023px) {
+            .index-logo-image {
+                width: 190px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .index-logo-image {
+                width: 170px;
+                max-width: 75vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .index-logo-image {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .index-logo-image {
+                width: 135px;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-white">
+
+    <header class="absolute top-0 left-0 right-0 z-50 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="about-mobile-header h-[120px] flex items-center justify-between">
+
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center justify-end group">
+                    <img src="./assets/images/logoo.png" alt="Corazon Pathology Laboratory logo"
+                        class="w-[320px] h-auto object-contain translate-y-16 translate-x-2 transition-all duration-300 group-hover:scale-105">
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center gap-7">
+                    <div class="flex items-center gap-8">
+                        <a href="index.html" class="nav-link">Home</a>
+                        <a href="about.html" class="nav-link active">About</a>
+                        <a href="services.html" class="nav-link">Services</a>
+                    </div>
+
+                    <!-- Call Us (Desktop) -->
+                    <div class="flex items-center gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-white/10 border border-white/10 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-violet-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                    d="M3 5a2 2 0 012-2h2.28a2 2 0 011.94 1.515L10 7a2 2 0 01-.5 1.92l-1.27 1.27a16 16 0 006.58 6.58l1.27-1.27A2 2 0 0118 15l2.485.78A2 2 0 0122 17.72V20a2 2 0 01-2 2C10.61 22 2 13.39 2 3a2 2 0 012-2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <a href="tel:+919604672609" class="block">
+                                <p class="text-xs text-violet-300">Call Us</p>
+                                <p class="text-sm font-semibold text-white">+91 9604672609</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Book a Test (Desktop) -->
+                    <a href="contact.html"
+                        class="group relative overflow-hidden inline-flex items-center justify-center px-7 py-4 rounded-full bg-white text-violet-900 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                        <span class="relative z-10">Book a Test</span>
+                        <span
+                            class="absolute inset-0 bg-violet-200 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <div class="flex lg:hidden items-center">
+                    <button id="mobileMenuBtn" type="button" class="w-11 h-11
+                        rounded-full
+                        bg-white/10
+                        border border-white/20
+                        flex items-center justify-center
+                        hover:bg-white
+                        hover:text-violet-900
+                        transition-all duration-300 text-white" aria-label="Toggle navigation menu"
+                        aria-expanded="false">
+                        <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobileMenu" class="hidden lg:hidden absolute top-24 left-6 right-6
+                rounded-2xl bg-violet-950/95 backdrop-blur-xl
+                border border-white/10 shadow-2xl">
+
+                <nav class="p-3">
+                    <a href="index.html"
+                        class="block rounded-xl px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition">
+                        Home
+                    </a>
+
+                    <a href="about.html" class="block rounded-xl bg-white/10 px-4 py-3 text-sm font-medium text-white">
+                        About
+                    </a>
+
+                    <a href="services.html"
+                        class="block rounded-xl px-4 py-3 text-sm font-medium text-white hover:bg-white/10 transition">
+                        Services
+                    </a>
+
+                    <!-- Divider Line -->
+                    <div class="my-2 border-t border-white/10"></div>
+
+                    <!-- Call Us Section (Mobile) -->
+                    <div class="flex items-center gap-3 px-4 py-3">
+                        <div
+                            class="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center shrink-0">
+                            <svg class="w-5 h-5 text-violet-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                                    d="M3 5a2 2 0 012-2h2.28a2 2 0 011.94 1.515L10 7a2 2 0 01-.5 1.92l-1.27 1.27a16 16 0 006.58 6.58l1.27-1.27A2 2 0 0118 15l2.485.78A2 2 0 0122 17.72V20a2 2 0 01-2 2C10.61 22 2 13.39 2 3a2 2 0 012-2z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <a href="tel:+919604672609" class="block">
+                                <p class="text-[11px] text-violet-300">Call Us</p>
+                                <p class="text-xs font-semibold text-white">+91 9604672609</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Book a Test Button  -->
+                    <a href="contact.html"
+                        class="mt-2 block rounded-xl bg-white px-4 py-3 text-center text-sm font-semibold text-violet-900 hover:bg-violet-100 transition">
+                        Book a Test &rarr;
+                    </a>
+                </nav>
+
+            </div>
+
+        </div>
+    </header>
+
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+        <img src="./assets/images/LabImage1.png" alt="Pathology Laboratory"
+            class="contact-hero-image absolute inset-0 w-full h-full object-cover">
+
+        <div class="absolute inset-0 bg-violet-900/45"></div>
+
+        <div class="absolute inset-0 bg-gradient-to-r from-violet-900/55 via-violet-800/30 to-violet-700/10"></div>
+
+        <div class="hero-glow absolute inset-0"></div>
+
+        <div class="hero-circle hero-circle-one"></div>
+        <div class="hero-circle hero-circle-two"></div>
+
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto pt-24 about-fade-up">
+
+
+
+            <h1 class="hero-title mt-6 text-5xl sm:text-6xl lg:text-7xl font-outfit font-semibold text-white">
+                About
+                <span class="text-violet-300">
+                    CORAZON
+                </span>
+            </h1>
+
+            <p class="hero-description max-w-2xl mx-auto mt-6 text-white/90 text-base sm:text-lg leading-8">
+
+                Reliable pathology and diagnostic testing powered by advanced technology,
+                experienced professionals and a commitment to accurate healthcare results.
+
+            </p>
+
+            <div class="hero-breadcrumb mt-8 text-sm sm:text-base text-white">
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <span class="breadcrumb-arrow">
+                    →
+                </span>
+
+                <span class="current">
+                    About Us
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="py-24 lg:py-32 bg-white overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-12 gap-14 items-center">
+
+                <div class="lg:col-span-7 relative min-h-[620px]">
+
+                    <div class="relative w-full h-[560px]">
+
+                        <img src="./assets/images/LabImage4.png" alt="Pathology Blood Testing"
+                            class="absolute top-0 left-0 w-[47%] h-[260px] object-cover about-image about-fade-left">
+
+                        <img src="./assets/images/LabImage8.png" alt="Automated Pathology Analyzer"
+                            class="absolute top-[90px] right-[4%] w-[48%] h-[390px] object-cover about-image about-fade-right delay-200">
+
+                        <img src="./assets/images/LabImage5.png" alt="Microscope Laboratory Testing"
+                            class="absolute bottom-0 left-0 w-[47%] h-[240px] object-cover about-image about-fade-left delay-300">
+
+                        <div
+                            class="absolute bottom-[20px] right-[3%] z-20 bg-violet-600 text-white px-8 py-7 text-center about-zoom delay-500">
+
+                            <h3 class="font-outfit text-5xl font-semibold">
+                                5.0★
+                            </h3>
+
+                            <p class="mt-2 text-xs font-semibold uppercase tracking-wider">
+                                Google
+                                <br>
+                                Rated
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="lg:col-span-5 about-fade-right">
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <span class="w-8 h-[2px] bg-violet-600"></span>
+
+                        <span class="text-violet-600 font-semibold">
+                            About CORAZON
+                        </span>
+
+                    </div>
+
+                    <h2
+                        class="font-outfit text-4xl sm:text-5xl lg:text-[50px] leading-[1.08] font-semibold text-violet-950">
+
+                        Accurate
+                        <br>
+                        Diagnostics.
+                        <br>
+                        Better Care.
+
+                    </h2>
+
+                    <p class="mt-7 text-gray-700 text-base lg:text-lg leading-8">
+                        Corazon Pathology Laboratory is a trusted, modern diagnostic center located in Ramdaspeth,
+                        Nagpur, dedicated to delivering accurate, timely, and high-quality laboratory services.
+                    </p>
+
+                    <p class="mt-5 text-gray-700 text-base lg:text-lg leading-8">
+                        We combine advanced technology with expert medical supervision to ensure reliable diagnostic
+                        results that support effective clinical decisions. Our laboratory is equipped with
+                        state-of-the-art analyzers, including HPLC systems for HbA1c, automated immunoassay platforms,
+                        and precision hematology analyzers.
+                    </p>
+
+                    <p class="mt-5 text-gray-700 text-base lg:text-lg leading-8">
+                        At Corazon, we believe diagnostics are not just tests — they are the foundation of good
+                        healthcare. Our focus is on:
+                    </p>
+
+                    <ul class="mt-4 space-y-2 text-gray-700 text-base lg:text-lg">
+
+                        <li class="flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-violet-600"></span>
+                            Accuracy and reliability
+                        </li>
+
+                        <li class="flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-violet-600"></span>
+                            Quick turnaround time
+                        </li>
+
+                        <li class="flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-violet-600"></span>
+                            Patient comfort and convenience
+                        </li>
+
+                        <li class="flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-violet-600"></span>
+                            Ethical and transparent pricing
+                        </li>
+
+                    </ul>
+
+                    <p class="mt-5 text-gray-700 text-base lg:text-lg leading-8">
+                        We also provide free home sample collection, ensuring that quality diagnostics are accessible
+                        to every patient in the comfort of their home.
+                    </p>
+
+                    <a href="services.html"
+                        class="inline-flex items-center gap-3 mt-8 px-7 py-4 bg-violet-600 text-white font-semibold transition-all duration-300 hover:bg-violet-700 hover:-translate-y-1">
+
+                        Explore Our Services
+
+                        <span>↗</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="py-24 lg:py-28 bg-violet-50 overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="max-w-3xl about-fade-up">
+
+                <div class="flex items-center gap-3 mb-5">
+
+                    <span class="w-8 h-[2px] bg-violet-600"></span>
+
+                    <span class="text-violet-600 font-semibold">
+                        Our Services
+                    </span>
+
+                </div>
+
+                <h2 class="font-outfit text-4xl lg:text-5xl leading-tight font-semibold text-violet-950">
+
+                    Comprehensive Testing
+                    <br>
+                    For Every Health Need
+
+                </h2>
+
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mt-14">
+
+                <div
+                    class="bg-white p-8 min-h-[320px] shadow-sm about-fade-up hover:-translate-y-2 transition-all duration-500">
+
+                    <img src="./assets/images/hemotology2.png" alt="Hematology"
+                        class="w-full h-40 object-cover rounded-xl">
+
+                    <h3 class="font-outfit text-2xl font-semibold text-violet-950 mt-8">
+                        Hematology
+                    </h3>
+
+                    <p class="mt-4 text-gray-600 leading-7">
+                        Complete blood testing and analysis to support diagnosis and monitoring
+                        of blood-related conditions.
+                    </p>
+
+                    <a href="services.html"
+                        class="inline-block mt-6 font-semibold text-violet-600 hover:text-violet-800">
+                        Read More ↗
+                    </a>
+
+                </div>
+
+                <div
+                    class="bg-white p-8 min-h-[320px] shadow-sm about-fade-up delay-200 hover:-translate-y-2 transition-all duration-500">
+
+                    <img src="./assets/images/biochemistry1.png" alt="Clinical Chemistry"
+                        class="w-full h-40 object-cover rounded-xl">
+
+                    <h3 class="font-outfit text-2xl font-semibold text-violet-950 mt-8">
+                        Biochemistry
+                    </h3>
+
+                    <p class="mt-4 text-gray-600 leading-7">
+                        Biochemistry is the study of chemical processes and biological molecules within living
+                        organisms.
+                        In medical laboratories, it involves analyzing blood and body fluids to measure crucial health
+                        markers.
+                    </p>
+
+                    <a href="services.html"
+                        class="inline-block mt-6 font-semibold text-violet-600 hover:text-violet-800">
+                        Read More ↗
+                    </a>
+
+                </div>
+
+                <div
+                    class="bg-white p-8 min-h-[320px] shadow-sm about-fade-up delay-400 hover:-translate-y-2 transition-all duration-500 group">
+
+                    <div class="overflow-hidden rounded-xl">
+
+                        <img src="./assets/images/Immunoassay&Hormones.png" alt="Immunoassay & Hormones"
+                            class="w-full h-40 object-cover transition-transform duration-700 group-hover:scale-110">
+
+                    </div>
+
+                    <h3 class="font-outfit text-2xl font-semibold text-violet-950 mt-8">
+                        Immunoassay & Hormones
+                    </h3>
+
+                    <ul class="mt-4 space-y-2">
+
+                        <li class="flex items-center gap-2.5 text-gray-600">
+                            <span class="w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0"></span>
+                            Thyroid Profile (T3, T4, TSH)
+                        </li>
+
+                        <li class="flex items-center gap-2.5 text-gray-500">
+                            <span class="w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0"></span>
+                            Vitamin D & Vitamin B12
+                        </li>
+
+                        <li class="flex items-center gap-2.5 text-gray-500">
+                            <span class="w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0"></span>
+                            CRP, RA Factor
+                        </li>
+
+                        <li class="flex items-center gap-2.5 text-gray-500">
+                            <span class="w-1.5 h-1.5 rounded-full bg-violet-600 shrink-0"></span>
+                            Fertility Hormones
+                        </li>
+
+                    </ul>
+
+                    <a href="services.html"
+                        class="inline-flex items-center mt-6 font-semibold text-violet-600 relative">
+
+                        <span class="relative">
+                            Read More
+                            <span
+                                class="absolute left-0 -bottom-1 w-0 h-[2px] bg-violet-600 transition-all duration-300 group-hover:w-full"></span>
+                        </span>
+
+                        <span class="ml-1">↗</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="consultant-showcase py-12 lg:py-16 text-white bg-violet-950">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 grid gap-10 lg:gap-16 items-center">
+
+            <div class="consultant-quote-section text-center lg:text-left">
+
+                <div class="mb-6 md:mb-8">
+
+                    <span
+                        class="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.22em] text-violet-100/90">
+                        Corazon Pathology Laboratory
+                    </span>
+
+                </div>
+
+                <h2
+                    class="font-outfit text-2xl md:text-3xl lg:text-4xl font-black tracking-tight leading-tight uppercase text-white">
+
+                    Expert Diagnostics,
+                    <br>
+                    Compassionate Care
+
+                </h2>
+
+                <blockquote class="mt-6 md:mt-8 border-l-4 border-violet-400 pl-6 py-2">
+
+                    <p class="text-lg md:text-xl italic font-medium text-violet-100/90 leading-relaxed">
+                        "Precision in every test, warmth in every interaction. We're redefining pathology for a
+                        healthier you."
+                    </p>
+
+                    <footer class="mt-4 text-base font-semibold text-violet-200">
+                        &mdash; Corazon Pathology Laboratory
+                    </footer>
+
+                </blockquote>
+
+            </div>
+
+
+            <div class="consultant-grid grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5">
+
+                <div
+                    class="consultant-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-4 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 flex flex-col items-center">
+
+                    <div class="consultant-photo w-full rounded-2xl overflow-hidden shadow-inner mb-3">
+
+                        <img src="./assets/images/pranita2.png" alt="Dr. Pranita Zare"
+                            class="w-full h-full object-contain object-center transition-transform duration-500 hover:scale-105">
+
+                    </div>
+
+                    <h3 class="consultant-name text-xl lg:text-2xl font-bold text-white text-center leading-tight">
+                        Dr. Pranita Zare
+                    </h3>
+
+                    <div class="mt-1.5 flex justify-center">
+
+                        <span
+                            class="consultant-badge inline-block bg-violet-500/20 text-violet-200 text-[10px] md:text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+
+                            Consultant Pathologist
+
+                        </span>
+
+                    </div>
+
+                    <div class="mt-3 w-full text-center space-y-2">
+
+                        <p class="text-sm md:text-base text-white font-semibold leading-snug">
+                            MBBS
+                            <span class="block text-xs md:text-sm text-violet-300 font-normal">
+                                (GMC, Nagpur)
+                            </span>
+                        </p>
+
+                        <p class="text-sm md:text-base text-white font-semibold leading-snug">
+                            MD Pathology
+                            <span class="block text-xs md:text-sm text-violet-300 font-normal">
+                                (Seth G.S. Medical College &amp; KEMH, Mumbai)
+                            </span>
+                        </p>
+
+                        <p class="text-sm md:text-base text-white font-semibold leading-snug">
+                            MUHS Fellowship in Cardiovascular Pathology
+                            <span class="block text-xs md:text-sm text-violet-300 font-normal">
+                                (Seth G.S. Medical College &amp; KEMH, Mumbai)
+                            </span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="consultant-card bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-4 shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 flex flex-col items-center">
+
+                    <div class="consultant-photo w-full rounded-2xl overflow-hidden shadow-inner mb-3">
+
+                        <img src="./assets/images/kavita.png" alt="Dr. Kavita Kolamkar"
+                            class="w-full h-full object-contain object-center transition-transform duration-500 hover:scale-105">
+
+                    </div>
+
+                    <h3 class="consultant-name text-xl lg:text-2xl font-bold text-white text-center leading-tight">
+                        Dr. Kavita Kolamkar
+                    </h3>
+
+                    <div class="mt-1.5 flex justify-center">
+
+                        <span
+                            class="consultant-badge inline-block bg-violet-500/20 text-violet-200 text-[10px] md:text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+
+                            Consultant Oncopathologist
+
+                        </span>
+
+                    </div>
+
+                    <div class="mt-3 w-full text-center space-y-2">
+
+                        <p class="text-sm md:text-base text-white font-semibold leading-snug">
+                            MBBS
+                            <span class="block text-xs md:text-sm text-violet-300 font-normal">
+                                (GMC, Akola)
+                            </span>
+                        </p>
+
+                        <p class="text-sm md:text-base text-white font-semibold leading-snug">
+                            MD Pathology
+                            <span class="block text-xs md:text-sm text-violet-300 font-normal">
+                                (TMH, Mumbai)
+                            </span>
+                        </p>
+
+                        <p class="text-sm md:text-base text-white font-semibold leading-snug">
+                            Fellowship in Oncopathology
+                            <span class="block text-xs md:text-sm text-violet-300 font-normal">
+                                (TMH, Mumbai)
+                            </span>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="py-24 lg:py-28 bg-violet-50 overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="max-w-3xl about-fade-up">
+
+                <div class="flex items-center gap-3 mb-5">
+
+                    <span class="w-8 h-[2px] bg-violet-600"></span>
+
+                    <span class="text-violet-600 font-semibold">
+                        Our Laboratory
+                    </span>
+
+                </div>
+
+                <h2 class="font-outfit text-4xl lg:text-5xl leading-tight font-semibold text-violet-950">
+
+                    A Glimpse Inside
+                    <br>
+                    Corazon Laboratory
+
+                </h2>
+
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mt-14">
+
+                <img src="./assets/images/LabImage9.png" alt="Clinical Laboratory Equipment"
+                    class="w-full h-[280px] object-cover about-image about-fade-up">
+
+                <img src="./assets/images/LabImage10.png" alt="Pathology Laboratory"
+                    class="w-full h-[280px] object-cover about-image about-fade-up delay-200">
+
+                <img src="./assets/images/LabImage6.png" alt="Histopathology Testing"
+                    class="w-full h-[280px] object-cover about-image about-fade-up delay-400">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="py-24 lg:py-32 bg-white overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+                <div class="relative min-h-[610px]">
+
+                    <img src="./assets/images/vetstage-gallery.jpg" alt="Laboratory Technician"
+                        class="absolute top-0 left-0 w-[48%] h-[350px] object-cover about-image about-fade-left">
+
+                    <img src="./assets/images/clinicbarcelona-lab.jpg" alt="Automated Clinical Laboratory"
+                        class="absolute top-[70px] right-0 w-[52%] h-[430px] object-cover about-image about-fade-right delay-200">
+
+                    <img src="./assets/images/LAB2.png" alt="Blood Sample Analysis"
+                        class="absolute bottom-0 left-0 w-[63%] h-[245px] object-cover border-8 border-white about-image about-fade-up delay-400">
+
+                </div>
+
+                <div class="about-fade-right">
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <span class="w-8 h-[2px] bg-violet-600"></span>
+
+                        <span class="text-violet-600 font-semibold">
+                            Our Mission & Vision
+                        </span>
+
+                    </div>
+
+                    <h2 class="font-outfit text-4xl lg:text-5xl leading-[1.08] font-semibold text-violet-950">
+
+                        Empowering Better
+                        <br>
+                        Healthcare Through
+                        <br>
+                        Diagnostics.
+
+                    </h2>
+
+                    <p class="mt-7 text-gray-600 text-lg leading-8">
+                        Our mission is to provide accurate, timely and dependable diagnostic
+                        information that supports better healthcare decisions.
+                    </p>
+
+                    <p class="mt-5 text-gray-600 text-lg leading-8">
+                        Our vision is to combine modern laboratory technology with professional
+                        expertise to create a trusted diagnostic experience for every patient.
+                    </p>
+
+                    <a href="contact.html"
+                        class="inline-flex items-center gap-3 mt-8 px-7 py-4 bg-violet-600 text-white font-semibold hover:bg-violet-700 hover:-translate-y-1 transition-all duration-300">
+
+                        Contact Us
+
+                        <span>↗</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="py-24 lg:py-32 bg-violet-50 overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+
+                <div class="about-fade-left">
+
+                    <div class="flex items-center gap-3 mb-5">
+
+                        <span class="w-8 h-[2px] bg-violet-600"></span>
+
+                        <span class="text-violet-600 font-semibold">
+                            Our Values
+                        </span>
+
+                    </div>
+
+                    <h2 class="font-outfit text-4xl lg:text-5xl leading-[1.08] font-semibold text-violet-950">
+
+                        Quality Is At
+                        <br>
+                        The Heart Of
+                        <br>
+                        Everything We Do.
+
+                    </h2>
+
+                    <div class="mt-9 about-fade-up">
+
+                        <h3 class="flex items-center gap-3 text-xl font-semibold text-violet-950">
+
+                            <span
+                                class="w-7 h-7 rounded-full border-2 border-violet-500 flex items-center justify-center text-violet-600 text-xs">
+                                ✓
+                            </span>
+
+                            Accuracy
+
+                        </h3>
+
+                        <p class="ml-10 mt-2 text-gray-600 leading-7">
+                            Every sample is handled carefully and processed using controlled
+                            laboratory procedures.
+                        </p>
+
+                    </div>
+
+                    <div class="mt-7 about-fade-up delay-200">
+
+                        <h3 class="flex items-center gap-3 text-xl font-semibold text-violet-950">
+
+                            <span
+                                class="w-7 h-7 rounded-full border-2 border-violet-500 flex items-center justify-center text-violet-600 text-xs">
+                                ✓
+                            </span>
+
+                            Reliability
+
+                        </h3>
+
+                        <p class="ml-10 mt-2 text-gray-600 leading-7">
+                            We maintain consistent testing processes so that patients can rely
+                            on their reports.
+                        </p>
+
+                    </div>
+
+                    <div class="mt-7 about-fade-up delay-400">
+
+                        <h3 class="flex items-center gap-3 text-xl font-semibold text-violet-950">
+
+                            <span
+                                class="w-7 h-7 rounded-full border-2 border-violet-500 flex items-center justify-center text-violet-600 text-xs">
+                                ✓
+                            </span>
+
+                            Patient Focus
+
+                        </h3>
+
+                        <p class="ml-10 mt-2 text-gray-600 leading-7">
+                            We understand that every report contributes to an individual's
+                            healthcare journey.
+                        </p>
+
+                    </div>
+
+                    <a href="contact.html"
+                        class="inline-flex items-center gap-3 mt-8 px-7 py-4 bg-violet-600 text-white font-semibold hover:bg-violet-700 hover:-translate-y-1 transition-all duration-300">
+
+                        Book A Test
+
+                        <span>↗</span>
+
+                    </a>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-5">
+
+                    <img src="./assets/images/LAB3.png" alt="Blood Sample Analysis"
+                        class="w-full h-[300px] object-cover about-image about-fade-up">
+
+                    <img src="./assets/images/laboratory-testing.jpg" alt="Microscope Testing"
+                        class="w-full h-[300px] object-cover about-image about-fade-up delay-200">
+
+                    <img src="./assets/images/hero-diagnostic.jpg" alt="Modern Pathology Equipment"
+                        class="col-span-2 w-full h-[300px] object-cover about-image about-fade-up delay-400">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="footer-compact relative bg-violet-950 text-white overflow-hidden">
+
+    <div class="absolute -top-32 -left-32 w-72 h-72 bg-violet-600/20 rounded-full blur-3xl"></div>
+
+    <div class="absolute -bottom-32 -right-32 w-72 h-72 bg-violet-500/20 rounded-full blur-3xl"></div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-0">
+
+        <div class="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+
+            <!-- Brand -->
+            <div>
+
+                <div class="flex items-center gap-3 mb-5">
+
+                    <div class="w-12 h-12 rounded-xl bg-violet-600 flex items-center justify-center">
+
+                        <span class="text-2xl font-bold">
+                            C
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <h2 class="text-2xl font-bold tracking-tight">
+                            Corazon Pathology Laboratory
+                        </h2>
+
+                        <p class="text-[10px] tracking-[0.2em] text-violet-300">
+                            HEALTHCARE REVOLUTIONIZED
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <p class="text-violet-200 leading-7 text-sm max-w-sm">
+
+                    Reliable pathology and diagnostic services with a focus on
+                    accurate testing, professional care and quality-focused
+                    laboratory practices.
+
+                </p>
+
+            </div>
+
+
+            <!-- Quick Links -->
+            <div>
+
+                <h3 class="text-lg font-semibold mb-6">
+                    Quick Links
+                </h3>
+
+                <ul class="space-y-4 text-sm text-violet-200">
+
+                    <li>
+                        <a
+                            href="index.html"
+                            class="hover:text-white hover:translate-x-1 inline-block transition"
+                        >
+                            Home
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="about.html"
+                            class="hover:text-white hover:translate-x-1 inline-block transition"
+                        >
+                            About Us
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="contact.html"
+                            class="hover:text-white hover:translate-x-1 inline-block transition"
+                        >
+                            Contact Us
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="services.html"
+                            class="hover:text-white hover:translate-x-1 inline-block transition"
+                        >
+                            Services
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- Our Services -->
+            <div>
+
+                <h3 class="text-lg font-semibold mb-6">
+                    Our Services
+                </h3>
+
+                <ul class="space-y-4 text-sm text-violet-200">
+
+                    <li>
+                        <a
+                            href="services.html"
+                            class="hover:text-white transition"
+                        >
+                            Hematology
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="services.html"
+                            class="hover:text-white transition"
+                        >
+                            Biochemistry
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="services.html"
+                            class="hover:text-white transition"
+                        >
+                            Microbiology
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="services.html"
+                            class="hover:text-white transition"
+                        >
+                            Diagnostic Testing
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="services.html"
+                            class="hover:text-white transition"
+                        >
+                            Sample Analysis
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="services.html"
+                            class="hover:text-white transition"
+                        >
+                            Laboratory Reports
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <!-- Contact -->
+            <div>
+
+                <a
+                    href="contact.html"
+                    class="text-lg font-semibold mb-6 block hover:text-white transition"
+                >
+                    Contact Us
+                </a>
+
+                <div class="space-y-5 text-sm text-violet-200">
+
+                    <!-- Phone -->
+                    <div class="flex gap-3">
+
+                        <i class="fa-solid fa-phone text-violet-400 mt-1"></i>
+
+                        <div>
+
+                            <a href="tel:+919604672609" class="block">
+
+                                <p class="text-xs text-violet-300">
+                                    Call Us
+                                </p>
+
+                                <p class="text-sm font-semibold text-white">
+                                    +91 9604672609
+                                </p>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="flex gap-3">
+
+                        <i class="fa-solid fa-envelope text-violet-400 mt-1"></i>
+
+                        <div>
+
+                            <p class="text-white font-medium">
+                                Email
+                            </p>
+
+                            <a
+                                href="mailto:corazonpathologylaboratory@gmail.com"
+                                class="block hover:text-white transition break-all"
+                            >
+                                corazonpathologylaboratory@gmail.com
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Location -->
+                    <div class="flex gap-3">
+
+                        <i class="fa-solid fa-location-dot text-violet-400 mt-1"></i>
+
+                        <div>
+
+                            <p class="text-white font-medium">
+                                Location
+                            </p>
+
+                            <p>
+                                Chamber No. 5, First Floor, Meher Prasad Complex,
+                                Ramdaspeth, near Hotel Centre Point,
+                                Nagpur - 440010
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- View Location -->
+                    <a
+                        href="https://www.google.com/maps/place/Corazon+Pathology+Laboratory/@21.1348978,79.0743689,17z/data=!3m2!4b1!5s0x3bd4c0903710f391:0x3f6233cbf7983b45!4m6!3m5!1s0x3bd4c1bc250c312d:0x14cc30cc29b2a652!8m2!3d21.1348978!4d79.0769438!16s%2Fg%2F11x2y14wsg?entry=ttu&g_ep=EgoyMDI2MDkwNi4wIKXMDSoASAFQAw%3D%3D"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-2 mt-2 px-6 py-3 bg-white text-violet-900 rounded-full font-semibold hover:bg-violet-100 transition"
+                    >
+
+                        View Location
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CTA -->
+        <div class="border-t border-violet-800 py-8 flex flex-col md:flex-row items-center justify-between gap-5">
+
+            <div>
+
+                <h3 class="text-xl font-semibold">
+                    Need a diagnostic test?
+                </h3>
+
+                <p class="text-sm text-violet-300 mt-1">
+                    Contact Corazon Pathology Laboratory for your diagnostic testing needs.
+                </p>
+
+            </div>
+
+            <a
+                href="contact.html"
+                class="px-7 py-3 rounded-full bg-violet-600 hover:bg-violet-500 transition font-semibold"
+            >
+                Book Your Test
+            </a>
+
+        </div>
+
+
+        <!-- Sponsored By -->
+        <div class="border-t border-violet-800 py-7">
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-5">
+
+                <p class="text-xs text-violet-300 text-center md:text-left">
+                    © 2026 Corazon Pathology Laboratory. All Rights Reserved.
+                </p>
+
+
+                <div class="flex flex-col items-center gap-2">
+
+                    <span class="text-[9px] uppercase tracking-[0.2em] text-violet-300">
+                        Sponsored by
+                    </span>
+
+                    <a
+                        href="https://webdockstudios.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Webdock Studios"
+                        class="group flex items-center justify-center transition-all duration-300"
+                    >
+
+                        <img
+                            src="./assets//images/webdock3.png"
+                            alt="Webdock Studios - Where Creative Design Meets Digital Growth"
+                            class="w-auto h-11 md:h-12 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
+                        >
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+    <button id="backToTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <div id="scrollProgress"></div>
+
+    <script>
+        const animatedElements = document.querySelectorAll(
+            ".about-fade-up, .about-fade-left, .about-fade-right, .about-zoom"
+        );
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+        animatedElements.forEach((element) => {
+            observer.observe(element);
+        });
+
+        const mobileMenuBtn =
+            document.getElementById("mobileMenuBtn");
+
+        const mobileMenu =
+            document.getElementById("mobileMenu");
+
+        const menuIcon =
+            document.getElementById("menuIcon");
+
+        const menuOpenPath =
+            "M4 6h16M4 12h16M4 18h16";
+
+        const menuClosePath =
+            "M6 6l12 12M6 18L18 6";
+
+        mobileMenuBtn.addEventListener("click", () => {
+
+            const isOpen =
+                mobileMenu.classList.toggle("hidden") === false;
+
+            menuIcon.innerHTML = `
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="${isOpen ? menuClosePath : menuOpenPath}" />
+            `;
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+        });
+
+        mobileMenu
+            .querySelectorAll("a")
+            .forEach((link) => {
+
+                link.addEventListener("click", () => {
+
+                    mobileMenu.classList.add("hidden");
+
+                    menuIcon.innerHTML = `
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="${menuOpenPath}" />
+                    `;
+
+                    mobileMenuBtn.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                });
+
+            });
+
+        const backToTop = document.getElementById("backToTop");
+
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.scrollY;
+
+            if (scrollTop > 500) {
+                backToTop.classList.add("visible");
+            } else {
+                backToTop.classList.remove("visible");
+            }
+        });
+
+        backToTop.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    </script>
+
+</body>
+
+</html>
