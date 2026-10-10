@@ -1296,6 +1296,181 @@
                 width: 135px;
             }
         }
+
+        /* ===== Gallery animations ===== */
+        .gal-item {
+            position: relative;
+            height: 280px;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: zoom-in;
+            box-shadow: 0 22px 60px rgba(36, 17, 63, .12);
+            opacity: 0;
+            transform: translateY(40px) scale(.94);
+            clip-path: inset(14% 14% 14% 14% round 24px);
+            transition:
+                opacity .8s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms),
+                transform .9s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms),
+                clip-path 1s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms),
+                box-shadow .5s ease;
+        }
+
+        .gal-item.in {
+            opacity: 1;
+            transform: none;
+            clip-path: inset(0 round 24px);
+        }
+
+        .gal-item img {
+            width: 100%;
+            height: 100% !important;
+            object-fit: cover;
+            transform: scale(1.25);
+            transition: transform 1.4s cubic-bezier(.2, .7, .2, 1) var(--d, 0ms), filter .5s ease;
+            filter: saturate(.92);
+        }
+
+        .gal-item.in img {
+            transform: scale(1);
+        }
+
+        .gal-item.in:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 75px rgba(36, 17, 63, .22);
+            transition-delay: 0ms;
+        }
+
+        .gal-item.in:hover img {
+            transform: scale(1.1);
+            filter: saturate(1.1);
+            transition-delay: 0ms;
+        }
+
+        .gal-overlay {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(180deg, rgba(36, 17, 63, .05), rgba(36, 17, 63, .6));
+            opacity: 0;
+            transition: opacity .45s ease;
+        }
+
+        .gal-item:hover .gal-overlay {
+            opacity: 1;
+        }
+
+        .gal-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: rgba(255, 255, 255, .95);
+            color: #4B2673;
+            font-size: 18px;
+            transform: scale(0) rotate(-90deg);
+            transition: transform .5s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        .gal-item:hover .gal-icon {
+            transform: scale(1) rotate(0);
+        }
+
+        /* Gallery lightbox */
+        #galLightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(22, 7, 43, .92);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .35s ease, visibility .35s ease;
+        }
+
+        #galLightbox.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #galLightbox img {
+            max-width: min(1100px, 100%);
+            max-height: 86vh;
+            border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+            transform: scale(.92);
+            opacity: 0;
+            transition: transform .45s cubic-bezier(.2, .7, .2, 1), opacity .3s ease;
+        }
+
+        #galLightbox.open img.ready {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .gal-btn {
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .25);
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+            transition: background .3s ease, transform .3s ease;
+        }
+
+        .gal-btn:hover {
+            background: #7045A0;
+        }
+
+        #galClose {
+            top: 20px;
+            right: 20px;
+        }
+
+        #galPrev {
+            left: 20px;
+            top: 50%;
+            margin-top: -23px;
+        }
+
+        #galNext {
+            right: 20px;
+            top: 50%;
+            margin-top: -23px;
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .gal-item {
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .gal-item {
+                height: 230px;
+            }
+
+            #galPrev {
+                left: 10px;
+            }
+
+            #galNext {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gal-item {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 
@@ -1421,7 +1596,7 @@
 
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
 
-        <img src="./assets/images/LabImage1.png" alt="Pathology Laboratory"
+        <img src="./assets/images/clinic2.jpeg" alt="Pathology Laboratory"
             class="contact-hero-image absolute inset-0 w-full h-full object-cover">
 
         <div class="absolute inset-0 bg-violet-900/45"></div>
@@ -1481,13 +1656,13 @@
 
                     <div class="relative w-full h-[560px]">
 
-                        <img src="./assets/images/LabImage4.png" alt="Pathology Blood Testing"
+                        <img src="./assets/images/clinic11.JPG" alt="Pathology Blood Testing"
                             class="absolute top-0 left-0 w-[47%] h-[260px] object-cover about-image about-fade-left">
 
-                        <img src="./assets/images/LabImage8.png" alt="Automated Pathology Analyzer"
+                        <img src="./assets/images/clinic12.JPG" alt="Automated Pathology Analyzer"
                             class="absolute top-[90px] right-[4%] w-[48%] h-[390px] object-cover about-image about-fade-right delay-200">
 
-                        <img src="./assets/images/LabImage5.png" alt="Microscope Laboratory Testing"
+                        <img src="./assets/images/clinic21.JPG" alt="Microscope Laboratory Testing"
                             class="absolute bottom-0 left-0 w-[47%] h-[240px] object-cover about-image about-fade-left delay-300">
 
                         <div
@@ -1887,41 +2062,82 @@
             <div class="max-w-3xl about-fade-up">
 
                 <div class="flex items-center gap-3 mb-5">
-
                     <span class="w-8 h-[2px] bg-violet-600"></span>
-
                     <span class="text-violet-600 font-semibold">
                         Our Laboratory
                     </span>
-
                 </div>
 
                 <h2 class="font-outfit text-4xl lg:text-5xl leading-tight font-semibold text-violet-950">
-
                     A Glimpse Inside
                     <br>
                     Corazon Laboratory
-
                 </h2>
 
             </div>
 
-            <div class="grid md:grid-cols-3 gap-6 mt-14">
+            <div id="galleryGrid" class="grid md:grid-cols-3 lg:grid-cols-4 gap-6 mt-14">
 
-                <img src="./assets/images/LabImage9.png" alt="Clinical Laboratory Equipment"
-                    class="w-full h-[280px] object-cover about-image about-fade-up">
+                <figure class="gal-item">
+                    <img src="./assets/images/clinic8.JPG" alt="Corazon Pathology Laboratory, photo 8">
+                    <div class="gal-overlay"><span class="gal-icon"><i class="fa-solid fa-expand"></i></span></div>
+                </figure>
 
-                <img src="./assets/images/LabImage10.png" alt="Pathology Laboratory"
-                    class="w-full h-[280px] object-cover about-image about-fade-up delay-200">
+                <figure class="gal-item">
+                    <img src="./assets/images/clinic6.jpeg" alt="Corazon Pathology Laboratory, photo 6">
+                    <div class="gal-overlay"><span class="gal-icon"><i class="fa-solid fa-expand"></i></span></div>
+                </figure>
 
-                <img src="./assets/images/LabImage6.png" alt="Histopathology Testing"
-                    class="w-full h-[280px] object-cover about-image about-fade-up delay-400">
+                <figure class="gal-item">
+                    <img src="./assets/images/clinic1.jpeg" alt="Corazon Pathology Laboratory, photo 1">
+                    <div class="gal-overlay"><span class="gal-icon"><i class="fa-solid fa-expand"></i></span></div>
+                </figure>
+
+                <figure class="gal-item">
+                    <img src="./assets/images/clinic22.JPG" alt="Corazon Pathology Laboratory, photo 22">
+                    <div class="gal-overlay"><span class="gal-icon"><i class="fa-solid fa-expand"></i></span></div>
+                </figure>
+
+                <figure class="gal-item">
+                    <img src="./assets/images/clinic20.JPG" alt="Corazon Pathology Laboratory, photo 20">
+                    <div class="gal-overlay"><span class="gal-icon"><i class="fa-solid fa-expand"></i></span></div>
+                </figure>
+
+                <figure class="gal-item">
+                    <img src="./assets/images/clinic17.JPG" alt="Corazon Pathology Laboratory, photo 17">
+                    <div class="gal-overlay"><span class="gal-icon"><i class="fa-solid fa-expand"></i></span></div>
+                </figure>
+
+                <figure class="gal-item">
+                    <img src="./assets/images/clinic10.JPG" alt="Corazon Pathology Laboratory, photo 10">
+                    <div class="gal-overlay"><span class="gal-icon"><i class="fa-solid fa-expand"></i></span></div>
+                </figure>
+
+                <figure class="gal-item">
+                    <img src="./assets/images/clinic3.jpeg" alt="Clinical Laboratory Equipment">
+                    <div class="gal-overlay"><span class="gal-icon"><i class="fa-solid fa-expand"></i></span></div>
+                </figure>
+
+                <figure class="gal-item">
+                    <img src="./assets/images/clinic11.JPG" alt="Histopathology Testing">
+                    <div class="gal-overlay"><span class="gal-icon"><i class="fa-solid fa-expand"></i></span></div>
+                </figure>
 
             </div>
 
         </div>
 
     </section>
+
+    <div id="galLightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button id="galClose" class="gal-btn" type="button" aria-label="Close"><i
+                class="fa-solid fa-xmark"></i></button>
+        <button id="galPrev" class="gal-btn" type="button" aria-label="Previous"><i
+                class="fa-solid fa-chevron-left"></i></button>
+        <button id="galNext" class="gal-btn" type="button" aria-label="Next"><i
+                class="fa-solid fa-chevron-right"></i></button>
+        <img id="galImg" src="" alt="">
+    </div>
 
     <section class="py-24 lg:py-32 bg-white overflow-hidden">
 
@@ -1931,13 +2147,13 @@
 
                 <div class="relative min-h-[610px]">
 
-                    <img src="./assets/images/vetstage-gallery.jpg" alt="Laboratory Technician"
+                    <img src="./assets/images/clinic6.jpeg" alt="Laboratory Technician"
                         class="absolute top-0 left-0 w-[48%] h-[350px] object-cover about-image about-fade-left">
 
-                    <img src="./assets/images/clinicbarcelona-lab.jpg" alt="Automated Clinical Laboratory"
+                    <img src="./assets/images/clinic5.jpeg" alt="Automated Clinical Laboratory"
                         class="absolute top-[70px] right-0 w-[52%] h-[430px] object-cover about-image about-fade-right delay-200">
 
-                    <img src="./assets/images/LAB2.png" alt="Blood Sample Analysis"
+                    <img src="./assets/images/clinic15.JPG" alt="Blood Sample Analysis"
                         class="absolute bottom-0 left-0 w-[63%] h-[245px] object-cover border-8 border-white about-image about-fade-up delay-400">
 
                 </div>
@@ -2092,13 +2308,13 @@
 
                 <div class="grid grid-cols-2 gap-5">
 
-                    <img src="./assets/images/LAB3.png" alt="Blood Sample Analysis"
+                    <img src="./assets/images/clinic4.jpeg" alt="Blood Sample Analysis"
                         class="w-full h-[300px] object-cover about-image about-fade-up">
 
-                    <img src="./assets/images/laboratory-testing.jpg" alt="Microscope Testing"
+                    <img src="./assets/images/clinic19.JPG" alt="Microscope Testing"
                         class="w-full h-[300px] object-cover about-image about-fade-up delay-200">
 
-                    <img src="./assets/images/hero-diagnostic.jpg" alt="Modern Pathology Equipment"
+                    <img src="./assets/images/clinic17.JPG" alt="Modern Pathology Equipment"
                         class="col-span-2 w-full h-[300px] object-cover about-image about-fade-up delay-400">
 
                 </div>
@@ -2111,253 +2327,219 @@
 
     <footer class="footer-compact relative bg-violet-950 text-white overflow-hidden">
 
-    <div class="absolute -top-32 -left-32 w-72 h-72 bg-violet-600/20 rounded-full blur-3xl"></div>
+        <div class="absolute -top-32 -left-32 w-72 h-72 bg-violet-600/20 rounded-full blur-3xl"></div>
 
-    <div class="absolute -bottom-32 -right-32 w-72 h-72 bg-violet-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 w-72 h-72 bg-violet-500/20 rounded-full blur-3xl"></div>
 
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-0">
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-0">
 
-        <div class="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 
-            <!-- Brand -->
-            <div>
+                <!-- Brand -->
+                <div>
 
-                <div class="flex items-center gap-3 mb-5">
+                    <div class="flex items-center gap-3 mb-5">
 
-                    <div class="w-12 h-12 rounded-xl bg-violet-600 flex items-center justify-center">
+                        <div class="w-12 h-12 rounded-xl bg-violet-600 flex items-center justify-center">
 
-                        <span class="text-2xl font-bold">
-                            C
-                        </span>
+                            <span class="text-2xl font-bold">
+                                C
+                            </span>
+
+                        </div>
+
+                        <div>
+
+                            <h2 class="text-2xl font-bold tracking-tight">
+                                Corazon Pathology Laboratory
+                            </h2>
+
+                            <p class="text-[10px] tracking-[0.2em] text-violet-300">
+                                HEALTHCARE REVOLUTIONIZED
+                            </p>
+
+                        </div>
 
                     </div>
 
-                    <div>
+                    <p class="text-violet-200 leading-7 text-sm max-w-sm">
 
-                        <h2 class="text-2xl font-bold tracking-tight">
-                            Corazon Pathology Laboratory
-                        </h2>
+                        Reliable pathology and diagnostic services with a focus on
+                        accurate testing, professional care and quality-focused
+                        laboratory practices.
 
-                        <p class="text-[10px] tracking-[0.2em] text-violet-300">
-                            HEALTHCARE REVOLUTIONIZED
-                        </p>
-
-                    </div>
+                    </p>
 
                 </div>
 
-                <p class="text-violet-200 leading-7 text-sm max-w-sm">
 
-                    Reliable pathology and diagnostic services with a focus on
-                    accurate testing, professional care and quality-focused
-                    laboratory practices.
+                <!-- Quick Links -->
+                <div>
 
-                </p>
+                    <h3 class="text-lg font-semibold mb-6">
+                        Quick Links
+                    </h3>
 
-            </div>
+                    <ul class="space-y-4 text-sm text-violet-200">
 
+                        <li>
+                            <a href="index.html" class="hover:text-white hover:translate-x-1 inline-block transition">
+                                Home
+                            </a>
+                        </li>
 
-            <!-- Quick Links -->
-            <div>
+                        <li>
+                            <a href="about.html" class="hover:text-white hover:translate-x-1 inline-block transition">
+                                About Us
+                            </a>
+                        </li>
 
-                <h3 class="text-lg font-semibold mb-6">
-                    Quick Links
-                </h3>
+                        <li>
+                            <a href="contact.html" class="hover:text-white hover:translate-x-1 inline-block transition">
+                                Contact Us
+                            </a>
+                        </li>
 
-                <ul class="space-y-4 text-sm text-violet-200">
+                        <li>
+                            <a href="services.html"
+                                class="hover:text-white hover:translate-x-1 inline-block transition">
+                                Services
+                            </a>
+                        </li>
 
-                    <li>
-                        <a
-                            href="index.html"
-                            class="hover:text-white hover:translate-x-1 inline-block transition"
-                        >
-                            Home
-                        </a>
-                    </li>
+                    </ul>
 
-                    <li>
-                        <a
-                            href="about.html"
-                            class="hover:text-white hover:translate-x-1 inline-block transition"
-                        >
-                            About Us
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="contact.html"
-                            class="hover:text-white hover:translate-x-1 inline-block transition"
-                        >
-                            Contact Us
-                        </a>
-                    </li>
-
-                    <li>
-                        <a
-                            href="services.html"
-                            class="hover:text-white hover:translate-x-1 inline-block transition"
-                        >
-                            Services
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
+                </div>
 
 
-            <!-- Our Services -->
-            <div>
+                <!-- Our Services -->
+                <div>
 
-                <h3 class="text-lg font-semibold mb-6">
-                    Our Services
-                </h3>
+                    <h3 class="text-lg font-semibold mb-6">
+                        Our Services
+                    </h3>
 
-                <ul class="space-y-4 text-sm text-violet-200">
+                    <ul class="space-y-4 text-sm text-violet-200">
 
-                    <li>
-                        <a
-                            href="services.html"
-                            class="hover:text-white transition"
-                        >
-                            Hematology
-                        </a>
-                    </li>
+                        <li>
+                            <a href="services.html" class="hover:text-white transition">
+                                Hematology
+                            </a>
+                        </li>
 
-                    <li>
-                        <a
-                            href="services.html"
-                            class="hover:text-white transition"
-                        >
-                            Biochemistry
-                        </a>
-                    </li>
+                        <li>
+                            <a href="services.html" class="hover:text-white transition">
+                                Biochemistry
+                            </a>
+                        </li>
 
-                    <li>
-                        <a
-                            href="services.html"
-                            class="hover:text-white transition"
-                        >
-                            Microbiology
-                        </a>
-                    </li>
+                        <li>
+                            <a href="services.html" class="hover:text-white transition">
+                                Microbiology
+                            </a>
+                        </li>
 
-                    <li>
-                        <a
-                            href="services.html"
-                            class="hover:text-white transition"
-                        >
-                            Diagnostic Testing
-                        </a>
-                    </li>
+                        <li>
+                            <a href="services.html" class="hover:text-white transition">
+                                Diagnostic Testing
+                            </a>
+                        </li>
 
-                    <li>
-                        <a
-                            href="services.html"
-                            class="hover:text-white transition"
-                        >
-                            Sample Analysis
-                        </a>
-                    </li>
+                        <li>
+                            <a href="services.html" class="hover:text-white transition">
+                                Sample Analysis
+                            </a>
+                        </li>
 
-                    <li>
-                        <a
-                            href="services.html"
-                            class="hover:text-white transition"
-                        >
-                            Laboratory Reports
-                        </a>
-                    </li>
+                        <li>
+                            <a href="services.html" class="hover:text-white transition">
+                                Laboratory Reports
+                            </a>
+                        </li>
 
-                </ul>
+                    </ul>
 
-            </div>
+                </div>
 
 
-            <!-- Contact -->
-            <div>
+                <!-- Contact -->
+                <div>
 
-                <a
-                    href="contact.html"
-                    class="text-lg font-semibold mb-6 block hover:text-white transition"
-                >
-                    Contact Us
-                </a>
+                    <a href="contact.html" class="text-lg font-semibold mb-6 block hover:text-white transition">
+                        Contact Us
+                    </a>
 
-                <div class="space-y-5 text-sm text-violet-200">
+                    <div class="space-y-5 text-sm text-violet-200">
 
-                    <!-- Phone -->
-                    <div class="flex gap-3">
+                        <!-- Phone -->
+                        <div class="flex gap-3">
 
-                        <i class="fa-solid fa-phone text-violet-400 mt-1"></i>
+                            <i class="fa-solid fa-phone text-violet-400 mt-1"></i>
 
-                        <div>
+                            <div>
 
-                            <a href="tel:+919604672609" class="block">
+                                <a href="tel:+919604672609" class="block">
 
-                                <p class="text-xs text-violet-300">
-                                    Call Us
+                                    <p class="text-xs text-violet-300">
+                                        Call Us
+                                    </p>
+
+                                    <p class="text-sm font-semibold text-white">
+                                        +91 9604672609
+                                    </p>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Email -->
+                        <div class="flex gap-3">
+
+                            <i class="fa-solid fa-envelope text-violet-400 mt-1"></i>
+
+                            <div>
+
+                                <p class="text-white font-medium">
+                                    Email
                                 </p>
 
-                                <p class="text-sm font-semibold text-white">
-                                    +91 9604672609
+                                <a href="mailto:corazonpathologylaboratory@gmail.com"
+                                    class="block hover:text-white transition break-all">
+                                    corazonpathologylaboratory@gmail.com
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Location -->
+                        <div class="flex gap-3">
+
+                            <i class="fa-solid fa-location-dot text-violet-400 mt-1"></i>
+
+                            <div>
+
+                                <p class="text-white font-medium">
+                                    Location
                                 </p>
 
-                            </a>
+                                <p>
+                                    Chamber No. 5, First Floor, Meher Prasad Complex,
+                                    Ramdaspeth, near Hotel Centre Point,
+                                    Nagpur - 440010
+                                </p>
+
+                            </div>
 
                         </div>
 
-                    </div>
 
-
-                    <!-- Email -->
-                    <div class="flex gap-3">
-
-                        <i class="fa-solid fa-envelope text-violet-400 mt-1"></i>
-
-                        <div>
-
-                            <p class="text-white font-medium">
-                                Email
-                            </p>
-
-                            <a
-                                href="mailto:corazonpathologylaboratory@gmail.com"
-                                class="block hover:text-white transition break-all"
-                            >
-                                corazonpathologylaboratory@gmail.com
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Location -->
-                    <div class="flex gap-3">
-
-                        <i class="fa-solid fa-location-dot text-violet-400 mt-1"></i>
-
-                        <div>
-
-                            <p class="text-white font-medium">
-                                Location
-                            </p>
-
-                            <p>
-                                Chamber No. 5, First Floor, Meher Prasad Complex,
-                                Ramdaspeth, near Hotel Centre Point,
-                                Nagpur - 440010
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- View Location -->
-                    <a
+                        <!-- View Location -->
+                        <!-- <a
                         href="https://www.google.com/maps/place/Corazon+Pathology+Laboratory/@21.1348978,79.0743689,17z/data=!3m2!4b1!5s0x3bd4c0903710f391:0x3f6233cbf7983b45!4m6!3m5!1s0x3bd4c1bc250c312d:0x14cc30cc29b2a652!8m2!3d21.1348978!4d79.0769438!16s%2Fg%2F11x2y14wsg?entry=ttu&g_ep=EgoyMDI2MDkwNi4wIKXMDSoASAFQAw%3D%3D"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -2368,7 +2550,65 @@
 
                         <i class="fa-solid fa-arrow-right"></i>
 
-                    </a>
+                    </a> -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CTA -->
+            <div class="border-t border-violet-800 py-8 flex flex-col md:flex-row items-center justify-between gap-5">
+
+                <div>
+
+                    <h3 class="text-xl font-semibold">
+                        Need a diagnostic test?
+                    </h3>
+
+                    <p class="text-sm text-violet-300 mt-1">
+                        Contact Corazon Pathology Laboratory for your diagnostic testing needs.
+                    </p>
+
+                </div>
+
+                <a href="contact.html"
+                    class="px-7 py-3 rounded-full bg-violet-600 hover:bg-violet-500 transition font-semibold">
+                    Book Your Test
+                </a>
+
+            </div>
+
+
+            <!-- Sponsored By -->
+            <div class="border-t border-violet-800 py-7">
+
+                <div class="flex flex-col md:flex-row items-center justify-between gap-5">
+
+                    <p class="text-xs text-violet-300 text-center md:text-left">
+                        © 2026 Corazon Pathology Laboratory. All Rights Reserved.
+                    </p>
+
+
+                    <div class="flex flex-col items-center gap-2">
+
+                        <span class="text-[9px] uppercase tracking-[0.2em] text-violet-300">
+                            Sponsored by
+                        </span>
+
+                        <a href="https://webdockstudios.com/" target="_blank" rel="noopener noreferrer"
+                            aria-label="Webdock Studios"
+                            class="group flex items-center justify-center transition-all duration-300">
+
+                            <img src="./assets//images/webdock3.png"
+                                alt="Webdock Studios - Where Creative Design Meets Digital Growth"
+                                class="w-auto h-11 md:h-12 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105">
+
+                        </a>
+
+                    </div>
 
                 </div>
 
@@ -2376,73 +2616,7 @@
 
         </div>
 
-
-        <!-- CTA -->
-        <div class="border-t border-violet-800 py-8 flex flex-col md:flex-row items-center justify-between gap-5">
-
-            <div>
-
-                <h3 class="text-xl font-semibold">
-                    Need a diagnostic test?
-                </h3>
-
-                <p class="text-sm text-violet-300 mt-1">
-                    Contact Corazon Pathology Laboratory for your diagnostic testing needs.
-                </p>
-
-            </div>
-
-            <a
-                href="contact.html"
-                class="px-7 py-3 rounded-full bg-violet-600 hover:bg-violet-500 transition font-semibold"
-            >
-                Book Your Test
-            </a>
-
-        </div>
-
-
-        <!-- Sponsored By -->
-        <div class="border-t border-violet-800 py-7">
-
-            <div class="flex flex-col md:flex-row items-center justify-between gap-5">
-
-                <p class="text-xs text-violet-300 text-center md:text-left">
-                    © 2026 Corazon Pathology Laboratory. All Rights Reserved.
-                </p>
-
-
-                <div class="flex flex-col items-center gap-2">
-
-                    <span class="text-[9px] uppercase tracking-[0.2em] text-violet-300">
-                        Sponsored by
-                    </span>
-
-                    <a
-                        href="https://webdockstudios.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Webdock Studios"
-                        class="group flex items-center justify-center transition-all duration-300"
-                    >
-
-                        <img
-                            src="./assets//images/webdock3.png"
-                            alt="Webdock Studios - Where Creative Design Meets Digital Growth"
-                            class="w-auto h-11 md:h-12 object-contain opacity-90 group-hover:opacity-100 transition-all duration-300 group-hover:scale-105"
-                        >
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</footer>
+    </footer>
 
     <button id="backToTop" aria-label="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
@@ -2550,6 +2724,64 @@
                 behavior: "smooth"
             });
         });
+
+        /* ===== Gallery: staggered reveal + lightbox ===== */
+        (function () {
+            const items = Array.from(document.querySelectorAll("#galleryGrid .gal-item"));
+            const lb = document.getElementById("galLightbox");
+            const lbImg = document.getElementById("galImg");
+            let current = 0;
+
+            // staggered reveal (har row me left to right)
+            const galObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const idx = items.indexOf(entry.target);
+                    entry.target.style.setProperty("--d", (idx % 4) * 120 + "ms");
+                    entry.target.classList.add("in");
+                    galObserver.unobserve(entry.target);
+                });
+            }, { threshold: 0.15 });
+
+            items.forEach((item) => galObserver.observe(item));
+
+            // lightbox
+            function show(i) {
+                current = (i + items.length) % items.length;
+                const img = items[current].querySelector("img");
+                lbImg.classList.remove("ready");
+                lbImg.src = img.src;
+                lbImg.alt = img.alt;
+                lbImg.onload = () => lbImg.classList.add("ready");
+            }
+
+            function open(i) {
+                show(i);
+                lb.classList.add("open");
+                document.body.style.overflow = "hidden";
+            }
+
+            function close() {
+                lb.classList.remove("open");
+                lbImg.classList.remove("ready");
+                document.body.style.overflow = "";
+            }
+
+            items.forEach((item, i) => item.addEventListener("click", () => open(i)));
+
+            document.getElementById("galClose").addEventListener("click", close);
+            document.getElementById("galPrev").addEventListener("click", (e) => { e.stopPropagation(); show(current - 1); });
+            document.getElementById("galNext").addEventListener("click", (e) => { e.stopPropagation(); show(current + 1); });
+
+            lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
+
+            document.addEventListener("keydown", (e) => {
+                if (!lb.classList.contains("open")) return;
+                if (e.key === "Escape") close();
+                if (e.key === "ArrowLeft") show(current - 1);
+                if (e.key === "ArrowRight") show(current + 1);
+            });
+        })();
     </script>
 
 </body>

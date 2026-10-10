@@ -637,6 +637,57 @@
                 width: 135px;
             }
         }
+
+        /* ===== Google Map section ===== */
+        .map-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .map-reveal.show {
+            opacity: 1;
+            transform: none;
+        }
+
+        .map-card {
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(112, 69, 160, .12);
+            box-shadow: 0 25px 60px rgba(36, 17, 63, .14);
+            background: #fff;
+        }
+
+        .map-card iframe {
+            display: block;
+            width: 100%;
+            height: 460px;
+            border: 0;
+            filter: saturate(.95);
+            transition: filter .5s ease;
+        }
+
+        .map-card:hover iframe {
+            filter: saturate(1.1);
+        }
+
+        @media (max-width: 767px) {
+            .map-card {
+                border-radius: 20px;
+            }
+
+            .map-card iframe {
+                height: 340px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .map-reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
     </style>
 </head>
 
@@ -857,7 +908,7 @@
 
         <!-- BACKGROUND IMAGE -->
 
-        <img src="./assets/images/LabImage11.png" alt="Modern Pathology Laboratory" class="contact-hero-image
+        <img src="./assets/images/clinic25.JPG" alt="Modern Pathology Laboratory" class="contact-hero-image
             absolute inset-0
             w-full h-full
             object-cover">
@@ -1785,6 +1836,64 @@
 
     </main>
 
+    <!-- ===== Google Map (form ke niche) ===== -->
+    <section class="pb-20 md:pb-24 bg-violet-50 overflow-hidden">
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-0">
+
+            <div class="max-w-3xl map-reveal">
+
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="w-8 h-[2px] bg-violet-600"></span>
+                    <span class="text-violet-600 font-semibold">Find Us</span>
+                </div>
+
+                <h2 class="font-outfit text-4xl lg:text-5xl leading-tight font-semibold text-violet-950">
+                    Visit Corazon
+                    <br>
+                    Pathology Laboratory
+                </h2>
+
+                <p class="mt-5 text-gray-600 leading-7">
+                    Chamber No. 5, First Floor, Meher Prasad Complex, Ramdaspeth,
+                    near Hotel Centre Point, Nagpur - 440010
+                </p>
+
+            </div>
+
+            <div class="map-card map-reveal mt-10" style="transition-delay:.15s">
+
+                <iframe
+                    src="https://maps.google.com/maps?q=21.1348978,79.0769438&z=17&output=embed"
+                    title="Corazon Pathology Laboratory location on Google Maps"
+                    loading="lazy"
+                    allowfullscreen
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+
+            </div>
+
+            <div class="map-reveal mt-6 flex flex-wrap items-center gap-4" style="transition-delay:.3s">
+
+                <a href="https://www.google.co.in/maps/place/Corazon+Pathology+Laboratory/@21.1348978,79.0743689,17z/data=!3m2!4b1!5s0x3bd4c0903710f391:0x3f6233cbf7983b45!4m6!3m5!1s0x3bd4c1bc250c312d:0x14cc30cc29b2a652!8m2!3d21.1348978!4d79.0769438!16s%2Fg%2F11x2y14wsg?entry=ttu&g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D"
+                    target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-3 px-7 py-4 rounded-full bg-violet-600 text-white font-semibold hover:bg-violet-700 hover:-translate-y-1 transition-all duration-300">
+                    <i class="fa-solid fa-location-arrow"></i>
+                    Open in Google Maps
+                </a>
+
+                <a href="tel:+919604672609"
+                    class="inline-flex items-center gap-3 px-7 py-4 rounded-full bg-white text-violet-900 font-semibold border border-violet-200 hover:bg-violet-100 hover:-translate-y-1 transition-all duration-300">
+                    <i class="fa-solid fa-phone"></i>
+                    +91 9604672609
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
    <footer class="footer-compact relative bg-violet-950 text-white overflow-hidden">
 
     <div class="absolute -top-32 -left-32 w-72 h-72 bg-violet-600/20 rounded-full blur-3xl"></div>
@@ -2032,7 +2141,7 @@
                     </div>
 
 
-                    <!-- View Location -->
+                    <!-- View Location
                     <a
                         href="https://www.google.com/maps/place/Corazon+Pathology+Laboratory/@21.1348978,79.0743689,17z/data=!3m2!4b1!5s0x3bd4c0903710f391:0x3f6233cbf7983b45!4m6!3m5!1s0x3bd4c1bc250c312d:0x14cc30cc29b2a652!8m2!3d21.1348978!4d79.0769438!16s%2Fg%2F11x2y14wsg?entry=ttu&g_ep=EgoyMDI2MDkwNi4wIKXMDSoASAFQAw%3D%3D"
                         target="_blank"
@@ -2044,7 +2153,7 @@
 
                         <i class="fa-solid fa-arrow-right"></i>
 
-                    </a>
+                    </a> -->
 
                 </div>
 
@@ -2448,6 +2557,38 @@
 
                 }
             );
+
+        })();
+
+        /* Map section reveal */
+
+        (function () {
+
+            const mapEls =
+                document.querySelectorAll(".map-reveal");
+
+            const mapObserver =
+                new IntersectionObserver(function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("show");
+
+                            mapObserver.unobserve(entry.target);
+
+                        }
+
+                    });
+
+                }, { threshold: 0.15 });
+
+            mapEls.forEach(function (el) {
+
+                mapObserver.observe(el);
+
+            });
 
         })();
 
