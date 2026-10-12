@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="icon" type="image/png" href="./assets/images/logo.png">
 
     <title>Corazon Pathology Laboratory | Advanced Pathology & Diagnostics</title>
 
@@ -15,6 +15,9 @@
 
 
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Outfit:wght@300;400;500;600&family=Playball&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./assets/css/style.css">
 
     <script>
@@ -386,6 +389,161 @@
                 width: 460px;
             }
         }
+
+        /* ---------- Hero circles (image 2 style, on original dark overlay) ---------- */
+        .hero-script {
+            font-family: 'Playball', 'Lobster', cursive;
+            font-weight: 400;
+            color: #C5B2D4;
+            font-size: 1.1em;
+        }
+
+        .hero-circles {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .hero-circle-item {
+            text-align: center;
+            transition: transform 0.4s ease;
+        }
+
+        .hero-circle-item:hover {
+            transform: translateY(-6px);
+        }
+
+        .hero-circle {
+            position: relative;
+            width: 100%;
+            max-width: 130px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+            border-radius: 9999px;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            outline: 2px solid rgba(197, 178, 212, 0.7);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+            background: #7045A0;
+        }
+
+        .hero-circle img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* fallback jab tak image file na ho */
+        .hero-circle.histo {
+            background: radial-gradient(circle, #e7a6dc 0, #b45bc0 45%, #6f2a8f 100%);
+        }
+
+        .hero-circle.cyto {
+            background: radial-gradient(circle at 30% 30%, #7b6fe0 0 6%, transparent 7%), radial-gradient(circle at 65% 60%, #7b6fe0 0 6%, transparent 7%), radial-gradient(circle, #cdd6fb, #9fb1ef);
+        }
+
+        .hero-circle.hema {
+            background: radial-gradient(circle at 50% 50%, #6a2f8f 0 9%, transparent 10%), radial-gradient(circle, #f3a9a3 0 38%, #f9d7d0 40%) 0 0 / 28px 28px;
+        }
+
+        .hero-circle.pap {
+            background: radial-gradient(circle at 35% 35%, #6a4fc9 0 7%, transparent 8%), radial-gradient(circle at 65% 62%, #6a4fc9 0 7%, transparent 8%), radial-gradient(circle, #d9cdf6, #a18ae0);
+        }
+
+        .hero-pill {
+            display: inline-block;
+            margin-top: 0.75rem;
+            padding: 0.25rem 0.9rem;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .hero-caption {
+            margin-top: 0.5rem;
+            font-size: 0.7rem;
+            line-height: 1.45;
+            color: rgba(237, 228, 247, 0.85);
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* ---------- Hero: tablet / mobile tuning ---------- */
+        @media (max-width: 767px) {
+
+            /* text ko readable rakhne ke liye extra dark layer (sirf mobile) */
+            #home::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: 15;
+                pointer-events: none;
+                background: linear-gradient(to bottom,
+                        rgba(22, 7, 43, 0.35) 0%,
+                        rgba(22, 7, 43, 0.55) 40%,
+                        rgba(22, 7, 43, 0.82) 100%);
+            }
+
+            #home .hero-main-image {
+                object-position: 72% top;
+            }
+
+            .hero-script {
+                display: inline-block;
+                font-size: 1.05em;
+            }
+
+            .hero-circles {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.4rem 0.75rem;
+                margin-top: 1.5rem;
+                padding-top: 1.5rem;
+            }
+
+            .hero-circle {
+                max-width: 92px;
+                border-width: 2px;
+                outline-width: 1px;
+            }
+
+            .hero-pill {
+                margin-top: 0.55rem;
+                padding: 0.18rem 0.7rem;
+                font-size: 0.72rem;
+            }
+
+            .hero-caption {
+                margin-top: 0.3rem;
+                font-size: 0.64rem;
+                line-height: 1.35;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero-circle {
+                max-width: 80px;
+            }
+
+            .hero-pill {
+                font-size: 0.68rem;
+            }
+        }
+
+        @media (min-width: 640px) and (max-width: 1023px) {
+            .hero-circles {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 0.75rem;
+            }
+
+            .hero-circle {
+                max-width: 110px;
+            }
+        }
     </style>
 
 
@@ -519,11 +677,11 @@
 
             <div class="absolute inset-0 overflow-hidden">
 
-                <img src="./assets/images/clinic.jpeg" alt="Corazon Pathology Laboratory" class="hero-slide slide-1">
-
-                <img src="./assets//images//clinic11.JPG" alt="Pathology Laboratory Testing" class="hero-slide slide-2">
-
-                <img src="./assets/images/clinic23.JPG" alt="Laboratory Diagnostic Testing" class="hero-slide slide-3">
+                <picture class="contents">
+                    <source media="(max-width: 767px)" srcset="./assets/images/heroSection2.png">
+                    <img src="./assets/images/heroSection.png" alt="Corazon Pathology Laboratory"
+                        class="hero-slide hero-main-image">
+                </picture>
 
                 <div class="absolute inset-0 z-10 bg-gradient-to-r from-[#16072b]/90 via-[#321052]/65 to-[#321052]/20">
                 </div>
@@ -535,34 +693,22 @@
             <div
                 class="relative z-20 max-w-7xl mx-auto min-h-screen md:min-h-[85vh] px-6 lg:px-8 pt-28 pb-12 md:pt-20 md:pb-8 flex items-center">
 
-                <div class="max-w-3xl pt-44 pb-10 sm:py-12 md:pt-16 md:pb-8 lg:pt-52 lg:pb-16 animate-fade-up">
+                <div class="max-w-4xl pt-40 pb-8 sm:py-12 md:pt-16 md:pb-8 lg:pt-52 lg:pb-16 animate-fade-up">
                     <h1
-                        class="font-outfit text-[24px] sm:text-[26px] lg:text-[38px] xl:text-[42px] leading-[1.2] font-semibold text-white">
-
-                        <span class="block lg:inline">Advanced Care </span>
-                        <span class="block lg:inline text-violet-300">Accurate</span>
-
-                        <br class="hidden lg:block" />
-
-                        <span class="block lg:inline">Tests </span>
-                        <span class="block lg:inline text-violet-300">Trusted Results</span>
-
-                        <br class="hidden lg:block" />
-
-                        <span class="block lg:inline">Better Health</span>
-
+                        class="font-outfit text-[28px] sm:text-[32px] lg:text-[44px] xl:text-[48px] leading-[1.2] font-light text-white">
+                        Accurate Diagnosis
+                        <br>
+                        for a <span class="hero-script">Healthier Tomorrow</span>
                     </h1>
 
                     <p
-                        class="mt-5 max-w-2xl text-sm sm:text-sm lg:text-base leading-6 sm:leading-7 text-violet-100/85 font-outfit">
-
-                        Corazon Pathology Laboratory provides reliable pathology
-                        and diagnostic testing with modern technology, precise
-                        laboratory analysis and professional patient-focused care.
-
+                        class="mt-5 text-sm sm:text-base lg:text-lg text-violet-100/90 font-outfit font-light tracking-wide">
+                        Precision <span class="mx-2 sm:mx-3 text-violet-300">|</span>
+                        Expertise <span class="mx-2 sm:mx-3 text-violet-300">|</span>
+                        Compassion
                     </p>
 
-                    <div class="flex flex-wrap items-center gap-4 mt-7">
+                    <!-- <div class="flex flex-wrap items-center gap-4 mt-7">
 
                         <a href="services.html" class="hero-btn-primary group">
 
@@ -588,46 +734,44 @@
 
                         </a>
 
-                    </div>
+                    </div> -->
 
-                    <div class="flex flex-wrap gap-8 sm:gap-10 mt-9 pt-6 border-t border-white/15">
+                    <div class="hero-circles mt-9 pt-6 border-t border-white/15">
 
-                        <div>
-
-                            <h3 class="font-outfit text-base sm:text-lg font-semibold text-white">
-                                Quality
-                            </h3>
-
-                            <p class="text-xs sm:text-sm text-violet-200 mt-1">
-                                Focused Testing
-                            </p>
-
+                        <div class="hero-circle-item">
+                            <div class="hero-circle histo">
+                                <img src="./assets//images//histopathology1.png" alt="Histopathology"
+                                    onerror="this.style.display='none'">
+                            </div>
+                            <span class="hero-pill">Histopathology</span>
+                            <p class="hero-caption">Tissue. Structure.<br>Answers.</p>
                         </div>
 
-                        <div>
-
-                            <h3 class="font-outfit text-base sm:text-lg font-semibold text-white">
-                                Reliable
-                            </h3>
-
-                            <p class="text-xs sm:text-sm text-violet-200 mt-1">
-                                Diagnostic Care
-                            </p>
-
+                        <div class="hero-circle-item">
+                            <div class="hero-circle cyto">
+                                <img src="./assets/images//cythology.png" alt="Cytology"
+                                    onerror="this.style.display='none'">
+                            </div>
+                            <span class="hero-pill">Cytology</span>
+                            <p class="hero-caption">Cells. Clues.<br>Early Detection.</p>
                         </div>
 
-                        <div>
-
-                            <h3 class="font-outfit text-base sm:text-lg font-semibold text-white">
-                                Nagpur
-                            </h3>
-
-                            <p class="text-xs sm:text-sm text-violet-200 mt-1">
-                                Ramdaspeth
-                            </p>
-
+                        <div class="hero-circle-item">
+                            <div class="hero-circle hema">
+                                <img src="./assets/images/hematology1.png" alt="Hematology"
+                                    onerror="this.style.display='none'">
+                            </div>
+                            <span class="hero-pill">Hematology</span>
+                            <p class="hero-caption">Blood. Count.<br>Better Care.</p>
                         </div>
 
+                        <div class="hero-circle-item">
+                            <div class="hero-circle pap">
+                                <img src="./assets/images/pan.png" alt="Pap Smear" onerror="this.style.display='none'">
+                            </div>
+                            <span class="hero-pill">Pap Smear</span>
+                            <p class="hero-caption">Prevention Today.<br>Peace of Mind Tomorrow.</p>
+                        </div>
                     </div>
 
                 </div>
@@ -644,8 +788,8 @@
 
                     <div class="relative about-fade-left">
 
-                        <img src="./assets/images/clinic4.jpeg" alt="Corazon Pathology Laboratory"
-                            class="w-full h-[520px] object-cover about-image">
+                        <img src="./assets/images/microscope.png" alt="Corazon Pathology Laboratory"
+                            class="w-full h-[700px] object-cover about-image">
 
                         <div
                             class="absolute -bottom-8 right-2 sm:right-6 lg:right-8 px-2 sm:px-3 lg:px-4 py-2 sm:py-3 about-logo">
